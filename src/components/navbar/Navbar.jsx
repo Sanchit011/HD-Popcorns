@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import "./navbar.scss";
 import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
 
@@ -12,8 +13,8 @@ const Navbar = () => {
       <div className="container">
         <div className="left">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"
-            alt=""
+            src="https://www.nicepng.com/png/detail/901-9011055_popcorn-logo-clear-background-popcorn-png.png"
+            alt="Popcorn Logo Clear Background - Popcorn Png@nicepng.com"
           />
           <span>Homepage</span>
           <span>Series</span>

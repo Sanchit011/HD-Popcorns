@@ -7,7 +7,7 @@
   z-index: 999;
   background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
 
-  &.scrolled{
+  &.scrolled {
     background-color: var(--main-color);
   }
 
@@ -21,8 +21,9 @@
       display: flex;
       align-items: center;
       img {
-        height: 25px;
+        height: 40px;
         margin-right: 40px;
+        border-radius: 10px;
       }
       span {
         margin-right: 20px;
