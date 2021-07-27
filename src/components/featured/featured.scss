@@ -3,8 +3,7 @@
   position: relative;
   .category {
     position: absolute;
-    top: 
-    70px;
+    top: 70px;
     left: 30px;
     font-size: 30px;
     font-weight: 500;
@@ -32,15 +31,14 @@
     position: absolute;
     left: 50px;
     top: 200px;
-    bottom: 100px;
     color: white;
     display: flex;
     flex-direction: column;
     img {
       width: 400px;
     }
-    .description {
-      margin: 40px 10px;
+    .desc {
+      margin: 20px 0px;
       color: black;
     }
     .buttons {

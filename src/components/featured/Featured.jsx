@@ -32,10 +32,10 @@ const Featured = ({ type }) => {
       />
       <div className="info">
         <img
-          src="https://www.nicepng.com/png/detail/901-9011055_popcorn-logo-clear-background-popcorn-png.png"
-          alt="Popcorn Logo Clear Background - Popcorn Png@nicepng.com"
+          src="https://occ-0-1432-1433.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABUZdeG1DrMstq-YKHZ-dA-cx2uQN_YbCYx7RABDk0y7F8ZK6nzgCz4bp5qJVgMizPbVpIvXrd4xMBQAuNe0xmuW2WjoeGMDn1cFO.webp?r=df1"
+          alt=""
         />
-        <span className="description">
+        <span className="desc">
           random sdfsdfsdfsdsdfsdfsfsddfsdfsdgbdfgsdfsdfsgfsdgsdf sdgsdfsd sddv
           sfsfsdfdsfsdf sdf sdf dsfsfsdfsdfsf sdfsdfsdf description
         </span>
