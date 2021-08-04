@@ -73,6 +73,7 @@ router.get("/", verify, async (req, res) => {
 });
 
 //GET USER STATS
+//asd
 router.get("/stats", async (req, res) => {
   const today = new Date();
   const latYear = today.setFullYear(today.setFullYear() - 1);
@@ -91,7 +92,7 @@ router.get("/stats", async (req, res) => {
         },
       },
     ]);
-    res.status(200).json(data)
+    res.status(200).json(data);
   } catch (err) {
     res.status(500).json(err);
   }
