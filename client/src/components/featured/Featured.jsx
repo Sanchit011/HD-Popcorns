@@ -1,14 +1,39 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import "./featured.scss";
 
-const Featured = ({ type }) => {
+export default function Featured({ type, setGenre }) {
+  const [content, setContent] = useState({});
+
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(`/movies/random?type=${type}`, {
+          headers: {
+            token:
+              "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
+          },
+        });
+        setContent(res.data[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getRandomContent();
+  }, [type]);
+
+  console.log(content);
   return (
     <div className="featured">
       {type && (
         <div className="category">
-          <span>{type === "movie" ? "Movies" : "TV Series"}</span>
-          <select name="genre" id="genre">
+          <span>{type === "movies" ? "Movies" : "Series"}</span>
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => setGenre(e.target.value)}
+          >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
@@ -26,19 +51,10 @@ const Featured = ({ type }) => {
           </select>
         </div>
       )}
-      <img
-        src="https://www.nicepng.com/png/detail/901-9011055_popcorn-logo-clear-background-popcorn-png.png"
-        alt="Popcorn Logo Clear Background - Popcorn Png@nicepng.com"
-      />
+      <img src={content.img} alt="" />
       <div className="info">
-        <img
-          src="https://occ-0-1432-1433.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABUZdeG1DrMstq-YKHZ-dA-cx2uQN_YbCYx7RABDk0y7F8ZK6nzgCz4bp5qJVgMizPbVpIvXrd4xMBQAuNe0xmuW2WjoeGMDn1cFO.webp?r=df1"
-          alt=""
-        />
-        <span className="desc">
-          random sdfsdfsdfsdsdfsdfsfsddfsdfsdgbdfgsdfsdfsgfsdgsdf sdgsdfsd sddv
-          sfsfsdfdsfsdf sdf sdf dsfsfsdfsdfsf sdfsdfsdf description
-        </span>
+        <img src={content.imgTitle} alt="" />
+        <span className="desc">{content.desc}</span>
         <div className="buttons">
           <button className="play">
             <PlayArrow />
@@ -46,12 +62,10 @@ const Featured = ({ type }) => {
           </button>
           <button className="more">
             <InfoOutlined />
-            <span>more Info</span>
+            <span>Info</span>
           </button>
         </div>
       </div>
     </div>
   );
-};
-
-export default Featured;
+}
