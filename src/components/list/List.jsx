@@ -1,32 +1,54 @@
+import ListItem from "../listItem/ListItem";
 import {
   ArrowBackIosOutlined,
   ArrowForwardIosOutlined,
 } from "@material-ui/icons";
-import { useRef, useState } from "react";
-import ListItem from "../listItem/ListItem";
 import "./list.scss";
-
-export default function List() {
+import { useRef, useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+const List = ({ fetchUrl, listTitle }) => {
   const [isMoved, setIsMoved] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
-
+  const [tmdbData, setTmdbData] = useState([]);
   const listRef = useRef();
 
   const handleClick = (direction) => {
-    setIsMoved(true);
     let distance = listRef.current.getBoundingClientRect().x - 50;
     if (direction === "left" && slideNumber > 0) {
       setSlideNumber(slideNumber - 1);
       listRef.current.style.transform = `translateX(${230 + distance}px)`;
+      if (slideNumber - 1 == 0) setIsMoved(false);
     }
-    if (direction === "right" && slideNumber < 5) {
+
+    if (direction === "right" && slideNumber < 14) {
       setSlideNumber(slideNumber + 1);
       listRef.current.style.transform = `translateX(${-230 + distance}px)`;
+      setIsMoved(true);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dataFromTMDB = await getData();
+        setTmdbData(dataFromTMDB);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getData = async () => {
+    const res = await axios.get(fetchUrl);
+    return res.data.results;
+  };
+
   return (
     <div className="list">
-      <span className="listTitle">Continue to watch</span>
+      <span className="listTitle">{listTitle}</span>
       <div className="wrapper">
         <ArrowBackIosOutlined
           className="sliderArrow left"
@@ -34,16 +56,8 @@ export default function List() {
           style={{ display: !isMoved && "none" }}
         />
         <div className="container" ref={listRef}>
-          <ListItem index={0} />
-          <ListItem index={1} />
-          <ListItem index={2} />
-          <ListItem index={3} />
-          <ListItem index={4} />
-          <ListItem index={5} />
-          <ListItem index={6} />
-          <ListItem index={7} />
-          <ListItem index={8} />
-          <ListItem index={9} />
+          {tmdbData &&
+            tmdbData.map((tmdb, i) => <ListItem index={i} id={tmdb.id} />)}
         </div>
         <ArrowForwardIosOutlined
           className="sliderArrow right"
@@ -52,4 +66,6 @@ export default function List() {
       </div>
     </div>
   );
-}
+};
+
+export default List;

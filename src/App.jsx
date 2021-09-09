@@ -1,9 +1,9 @@
 import "./app.scss";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Register from "./pages/register/Register";
-import Watch from "./pages/watch/Watch";
 import Login from "./pages/login/Login";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Watch from "./pages/watch/Watch";
 
 const App = () => {
   return (

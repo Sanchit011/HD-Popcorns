@@ -1,11 +1,10 @@
 @import "../../app.scss";
-
 .navbar {
+  top: 0;
   width: 100%;
   color: white;
   font-size: 14px;
   position: fixed;
-  top: 0;
   z-index: 999;
   background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
 
@@ -15,24 +14,17 @@
 
   .container {
     padding: 0px 50px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
 
     .left {
       display: flex;
       align-items: center;
-
       img {
         height: 25px;
-        margin-right: 40px;
-
-        @include mobile {
-          display: none;
-        }
       }
-
       span {
         margin-right: 20px;
         cursor: pointer;
@@ -40,12 +32,14 @@
         @include tablet {
           display: none;
         }
+      }
 
-        &.navbarmainLinks {
-          @include tablet {
-            display: block;
-          }
-        }
+      img {
+        margin-right: 40px;
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        object-fit: cover;
       }
     }
 

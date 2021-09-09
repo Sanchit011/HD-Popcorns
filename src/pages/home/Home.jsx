@@ -1,19 +1,25 @@
-import Navbar from "../../components/navbar/Navbar";
+import React from "react";
 import Featured from "../../components/featured/Featured";
-import "./home.scss";
 import List from "../../components/list/List";
-
-const Home = () => {
+import Navbar from "../../components/navbar/Navbar";
+import "./home.scss";
+import requests from "../../requests";
+const Home = ({ type }) => {
   return (
     <div className="home">
       <Navbar />
-      <Featured />
-      <List />
-      <List />
-      <List />
-      <List />
+      <Featured type={type} />
+      <List
+        fetchUrl={requests.fetchComedyMovies}
+        listTitle="Continue Watching"
+      />
+      <List fetchUrl={requests.fetchTrending} listTitle="Trending" />
+      <List fetchUrl={requests.fetchPopular} listTitle="Popular" />
+      <List fetchUrl={requests.fetchTopRated} listTitle="Top Rated" />
+      <List fetchUrl={requests.fetchUpcoming} listTitle="Upcoming" />
     </div>
   );
 };
+
 
 export default Home;

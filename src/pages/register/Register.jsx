@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./register.scss";
 
-export default function Register() {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,19 +13,19 @@ export default function Register() {
   const handleStart = () => {
     setEmail(emailRef.current.value);
   };
+
   const handleFinish = () => {
     setPassword(passwordRef.current.value);
   };
+
   return (
     <div className="register">
       <div className="top">
         <div className="wrapper">
-          <img
-            className="logo"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
-            alt=""
-          />
-          <button className="loginButton">Sign In</button>
+        <img src="/logo.jpg" alt="" />
+          <Link to="/login" className="link">
+            <button className="loginButton">Sign In</button>
+          </Link>
         </div>
       </div>
       <div className="container">
@@ -37,18 +38,20 @@ export default function Register() {
           <div className="input">
             <input type="email" placeholder="email address" ref={emailRef} />
             <button className="registerButton" onClick={handleStart}>
-              Get Started
+              Get Started!
             </button>
           </div>
         ) : (
           <form className="input">
             <input type="password" placeholder="password" ref={passwordRef} />
-            <button className="registerButton" onClick={handleFinish}>
-              Start
-            </button>
+            <Link to="/" className="link">
+              <button className="registerButton">Sign In</button>
+            </Link>
           </form>
         )}
       </div>
     </div>
   );
-}
+};
+
+export default Register;
